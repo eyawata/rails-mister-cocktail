@@ -13,3 +13,6 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+# Folder path for screenshots
+Capybara.save_path = Rails.root.join("tmp/capybara")
