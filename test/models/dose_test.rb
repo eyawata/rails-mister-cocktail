@@ -22,4 +22,14 @@ class DoseTest < ActiveSupport::TestCase
     duplicate_dose = Dose.new(description: "A splash", cocktail: cocktails(:mojito), ingredient: ingredients(:lime))
     assert_not duplicate_dose.save, "Saved the dose with a duplicate [cocktail, ingredient] pairing"
   end
+
+  test "should belong to an ingredient" do
+    dose = doses(:martini_lime)
+    assert_equal ingredients(:lime), dose.ingredient
+  end
+
+  test "should belong to an cocktail" do
+    dose = doses(:martini_lime)
+    assert_equal cocktails(:martini), dose.cocktail
+  end
 end
