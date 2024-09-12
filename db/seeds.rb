@@ -44,7 +44,7 @@ end
 puts "Created #{Cocktail.count} cocktails!"
 puts "Creating doses..."
 
-doses_description = ["a dash", "a spoonful", "half a cup", "rim of cup", "a pinch", "a dollop", "a handful", "a splash", "a sprinkle", "a scoop", "a ladleful", "a smidgen", "a drop", "a heaping tablespoon"]
+doses_description = ["dash", "spoonful", "half a cup", "rim of cup", "pinch", "dollop", "handful", "splash", "sprinkle", "scoop", "ladleful", "smidgen", "drop", "heaping tablespoon"]
 
 Cocktail.all.each do |cocktail|
   2..5.times do

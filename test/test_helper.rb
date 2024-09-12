@@ -1,6 +1,8 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require 'minitest/reporters'
+
 
 module ActiveSupport
   class TestCase
@@ -16,3 +18,6 @@ end
 
 # Folder path for screenshots
 Capybara.save_path = Rails.root.join("tmp/capybara")
+
+# Use minitest reporter for better output messages "PASS" or "FAIL"
+Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
