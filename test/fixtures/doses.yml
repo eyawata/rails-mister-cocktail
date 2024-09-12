@@ -1,0 +1,14 @@
+mojito_lime:
+  description: "A dash"
+  cocktail: mojito
+  ingredient: lime
+
+mojito_mint:
+  description: "A handful"
+  cocktail: mojito
+  ingredient: mint
+
+martini_lime:
+  description: "A splash"
+  cocktail: martini
+  ingredient: lime
