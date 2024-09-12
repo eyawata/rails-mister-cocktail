@@ -85,6 +85,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    ansi (1.5.0)
     autoprefixer-rails (10.4.19.0)
       execjs (~> 2)
     base64 (0.2.0)
@@ -151,6 +152,11 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    minitest-reporters (1.7.1)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.16)
@@ -219,6 +225,7 @@ GEM
     reline (0.5.10)
       io-console (~> 0.5)
     rexml (3.3.7)
+    ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -282,6 +289,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  minitest-reporters (~> 1.4)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.4)
