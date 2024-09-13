@@ -1,6 +1,5 @@
 name: Test
 
-# triggers on
 on: [push]
 
 jobs:
@@ -8,9 +7,36 @@ jobs:
     env:
       RAILS_ENV: test
       NODE_ENV: test
-    runs-on: ubuntu-latest # runner
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
-      - name: Checkout repository # copies your code into a runner VM
-        uses: actions/checkout@v2 # short for https://github.com/actions/checkout
-      - name: Hello World!
-        run: echo "Hello World!" # runs the script
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+
+      - name: Prepare DB
+        run: |
+          cp config/database.github.yml config/database.yml
+          bundle exec rails db:create db:migrate
+
+      - name: Run model tests
+        run: bundle exec rails test
+
+      - name: Run system tests
+        run: bundle exec rails test:system
