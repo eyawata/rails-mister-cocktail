@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.3.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.4"
+gem "rails", "~> 7.2.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -25,6 +25,8 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+gem 'net-pop', '~> 0.1.2'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -49,6 +51,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+gem 'ffi', platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 
 group :development, :test do
   gem "dotenv-rails"
@@ -66,7 +69,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  # gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
 
 group :test do
@@ -75,3 +78,5 @@ group :test do
   gem "selenium-webdriver"
   gem 'minitest-reporters', '~> 1.4'
 end
+
+# ADDED

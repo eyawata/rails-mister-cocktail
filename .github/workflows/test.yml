@@ -27,8 +27,16 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.2
-          bundler-cache: true
+          ruby-version: 3.3.3
+          bundler: '2.5.18'
+
+      - name: Upgrade RubyGems
+        run: |
+          gem update --system
+          gem --version  # Verify the updated RubyGems version
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
 
       - name: Prepare DB
         run: |
