@@ -1,5 +1,4 @@
 class CocktailsController < ApplicationController
-  # resources :cocktails, only: [:index, :show, :edit, :new, :create]
 
   def index
     @cocktails = Cocktail.all
@@ -10,17 +9,8 @@ class CocktailsController < ApplicationController
 
   def show
     @cocktail = Cocktail.find(params[:id])
+    @doses = @cocktail.doses
     @dose = Dose.new
-  end
-
-  def update
-    @cocktail = Cocktail.find(params[:id])
-    @dose = @cocktail.doses.new(dose_params)
-    if @dose.save
-      redirect_to @cocktail
-    else
-      render :new, status: :unprocessable_entity
-    end
   end
 
   def create
@@ -30,6 +20,13 @@ class CocktailsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.doses.destroy_all
+    @cocktail.destroy
+    redirect_to cocktails_path, notice: 'Cocktail was successfully deleted.'
   end
 
   private

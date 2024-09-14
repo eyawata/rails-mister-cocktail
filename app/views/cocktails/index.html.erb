@@ -1,7 +1,12 @@
 <h1>Cocktails</h1>
 <ul class="cocktails">
   <% @cocktails.each do |cocktail| %>
-    <li><%= link_to cocktail.name, cocktail_path(cocktail) %></li>
+    <li>
+      <%= link_to cocktail.name, cocktail_path(cocktail) %>
+      <%= link_to cocktail_path(cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete this cocktail?" } do %>
+        <i class="fa-solid fa-square-minus"></i>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 <%= render "new", new_cocktail: @new_cocktail %>

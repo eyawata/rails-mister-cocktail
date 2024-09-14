@@ -27,4 +27,20 @@ class DosesTest < ApplicationSystemTestCase
     assert_text @ingredient.name
     assert_text "A dollop of"
   end
+
+  test "user can delete a dose" do
+    visit cocktail_path(@cocktail)
+
+    @dose = doses(:mojito_lime)
+
+    within(:xpath, "//li[contains(text(), '#{@dose.description}')]") do
+      find('a[data-turbo-method="delete"]').click
+    end
+
+    # Verify that we're back on the cocktail page
+    assert_current_path cocktail_path(@cocktail)
+
+    # Check that the dose is no longer displayed on the page
+    assert_no_text @dose.description
+  end
 end

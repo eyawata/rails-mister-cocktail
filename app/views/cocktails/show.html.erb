@@ -1,8 +1,13 @@
 <h1><%= @cocktail.name %></h1>
 <h2>Recipe</h2>
 <ul class="recipe-list">
-  <% @cocktail.doses.each do |dose| %>
-    <li><%= dose.description %> of <%= dose.ingredient.name %></li>
+  <% @doses.each do |dose| %>
+    <li>
+      <%= dose.description %> of <%= dose.ingredient.name %>
+      <%= link_to cocktail_dose_path(@cocktail, dose), data: { turbo_method: :delete, turbo_confirm: "Delete this dose?" } do %>
+        <i class="fa-solid fa-square-minus"></i>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 <%= render "doses/new", cocktail: @cocktail %>
