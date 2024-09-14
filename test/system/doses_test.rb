@@ -1,29 +1,30 @@
-# require "application_system_test_case"
+require "application_system_test_case"
 
-# class DosesTest < ApplicationSystemTestCase
-  # fixtures :cocktails, :doses, :ingredients
+class DosesTest < ApplicationSystemTestCase
+  fixtures :cocktails, :doses, :ingredients
 
-  # def setup
-  #   @cocktail = cocktails(:mojito)
-  #   @ingredient = ingredients(:syrup)
-  # end
+  def setup
+    @cocktail = cocktails(:mojito)
+    @ingredient = ingredients(:syrup)
+  end
 
-  # test "user can create a new dose" do
+  test "user can create a new dose" do
+    visit cocktail_path(@cocktail)
 
-  #   get cocktail_path(@cocktail)
+    # Select the ingredient from the dropdown
+    select @ingredient.name, from: "Ingredient"
 
-  #   puts response.body
+    # Fill in the description
+    fill_in "Description", with: "A dollop of"
 
-  #   puts ingredients
-  #   puts @ingredient.name
-  #   # Locate the dropdown menu and select the ingredient
-  #   click_on "Ingredient"
+    # Click the 'Create Dose' button
+    click_button "Create Dose"
 
-  #   fill_in "Description", with: "A dollop of"
-  #   click_button "Create Dose"
+    # Verify that we're back on the cocktail page
+    assert_current_path cocktail_path(@cocktail)
 
-  #   assert_current_path cocktail_path(@cocktail)
-  #   assert_text @ingredient.name.lowercase
-  #   assert_text "A dollop of"
-  # end
-# end
+    # Check that the new dose is displayed on the page
+    assert_text @ingredient.name
+    assert_text "A dollop of"
+  end
+end
