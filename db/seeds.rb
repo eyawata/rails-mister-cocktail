@@ -47,11 +47,22 @@ puts "Creating doses..."
 doses_description = ["dash", "spoonful", "half a cup", "rim of cup", "pinch", "dollop", "handful", "splash", "sprinkle", "scoop", "ladleful", "smidgen", "drop", "heaping tablespoon"]
 
 Cocktail.all.each do |cocktail|
-  2..5.times do
+  used_ingredients = []
+
+  rand(2..5).times do
+    # Get available ingredients that have not been used with this cocktail
+    available_ingredients = Ingredient.where.not(id: used_ingredients)
+
+    break if available_ingredients.empty?
+
+    ingredient = available_ingredients.sample
+
     cocktail.doses.create!(
       description: doses_description.sample,
-      ingredient: Ingredient.all.sample
+      ingredient: ingredient
     )
+
+    used_ingredients << ingredient.id
   end
 end
 
