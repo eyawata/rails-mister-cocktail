@@ -10,7 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body style="background-color:black; color: #ccc;">
+    <div class="banner">
+      <%= image_tag "cocktail_app_logo.png", alt: "cocktail app logo" %>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
