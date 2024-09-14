@@ -51,6 +51,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+gem 'webdrivers'
 gem 'ffi', platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 
 group :development, :test do

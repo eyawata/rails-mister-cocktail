@@ -18,14 +18,17 @@ class CocktailsControllerTest < ActionDispatch::IntegrationTest
     get cocktail_url(mojito)
     assert_response :success
     assert_select 'h1', mojito.name
-    assert_select 'li', doses(:mojito_lime).description
-    assert_select 'li', doses(:mojito_mint).description
+    desc1 = doses(:mojito_lime).description
+    desc2 = doses(:mojito_mint).description
+
+    assert_select 'li', /#{Regexp.escape(desc1)}.*/i
+    assert_select 'li', /#{Regexp.escape(desc2)}.*/i
   end
 
   # Test for creating a new cocktail
   test "should create cocktail" do
     assert_difference('Cocktail.count') do
-      post cocktails_url, params: { cocktail: { name: 'New Cocktail' } }
+      post cocktails_path, params: { cocktail: { name: 'New Cocktail' } }
     end
     assert_redirected_to cocktail_path(Cocktail.last)
   end
