@@ -1,13 +1,22 @@
-<h1 class="cocktail"><%= @cocktail.name %></h1>
-<h2>Recipe</h2>
-<ul class="recipe-list">
-  <% @doses.each do |dose| %>
-    <li>
-      <%= dose.description %> of <%= dose.ingredient.name %>
-      <%= link_to cocktail_dose_path(@cocktail, dose), data: { turbo_method: :delete, turbo_confirm: "Delete this dose?" } do %>
-        <i class="fa-solid fa-square-minus"></i>
-      <% end %>
-    </li>
+<div class="d-flex align-items-center">
+  <%= link_to cocktails_path do %>
+    <i class="fa-solid fa-circle-arrow-left me-3 my-1"></i>
   <% end %>
+  <h1 class="cocktail"><%= @cocktail.name %></h1>
+</div>
+<h2>Recipe</h2>
+<% if @doses.count > 0 %>
+<ul class="recipe-list">
+    <% @doses.each do |dose| %>
+      <li>
+        <%= dose.description %> of <%= dose.ingredient.name %>
+        <%= link_to cocktail_dose_path(@cocktail, dose), data: { turbo_method: :delete, turbo_confirm: "Delete this dose?" } do %>
+          <i class="fa-solid fa-square-minus"></i>
+        <% end %>
+      </li>
+    <% end %>
 </ul>
+<% else %>
+  <p>No ingredients for this cocktail yet.</p>
+<% end %>
 <%= render "doses/new", cocktail: @cocktail %>

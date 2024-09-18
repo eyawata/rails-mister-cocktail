@@ -3,4 +3,7 @@
   background-color:rgba(49, 49, 49, 0.238);
   padding: 32px;
   border-radius: 10px;
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #F752E0 8%, #FFE631 31%, #FFBDF3 65%, #3DD8FC 100%) 1;
 }
