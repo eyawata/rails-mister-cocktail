@@ -4,19 +4,30 @@
   <% end %>
   <h1 class="cocktail"><%= @cocktail.name %></h1>
 </div>
-<h2>Recipe</h2>
-<% if @doses.count > 0 %>
-<ul class="recipe-list">
-    <% @doses.each do |dose| %>
-      <li>
-        <%= dose.description %> of <%= dose.ingredient.name %>
-        <%= link_to cocktail_dose_path(@cocktail, dose), data: { turbo_method: :delete, turbo_confirm: "Delete this dose?" } do %>
-          <i class="fa-solid fa-square-minus"></i>
+<div class="cocktail-info justify-content-between">
+  <div>
+    <h2>Recipe</h2>
+    <% if @doses.count > 0 %>
+    <ul class="recipe-list">
+        <% @doses.each do |dose| %>
+          <li>
+            <%= dose.description %> of <%= dose.ingredient.name %>
+            <%= link_to cocktail_dose_path(@cocktail, dose), data: { turbo_method: :delete, turbo_confirm: "Delete this dose?" } do %>
+              <i class="fa-solid fa-square-minus"></i>
+            <% end %>
+          </li>
         <% end %>
-      </li>
+    </ul>
+    <% else %>
+      <p>No ingredients for this cocktail yet.</p>
     <% end %>
-</ul>
-<% else %>
-  <p>No ingredients for this cocktail yet.</p>
-<% end %>
+  </div>
+  <div>
+    <% if @cocktail.photo.attached? %>
+      <%= cl_image_tag @cocktail.photo.key, class: 'cocktail-photo' %>
+    <% else %>
+      <%= image_tag 'https://res.cloudinary.com/djqladxhq/image/upload/v1726328408/Eri_s_upwtyu.png', class: 'cocktail.photo' %>
+    <% end %>
+  </div>
+</div>
 <%= render "doses/new", cocktail: @cocktail %>

@@ -1,6 +1,6 @@
 <h1>Add a new Cocktail</h1>
 <%= simple_form_for new_cocktail do |f| %>
   <%= f.input :name %>
-  <%= f.input :photos, as: :file %>
+  <%= f.input :photo, as: :file %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
